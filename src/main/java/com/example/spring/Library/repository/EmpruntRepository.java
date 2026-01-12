@@ -1,4 +1,11 @@
 package com.example.spring.Library.repository;
 
-public interface EmpruntRepository {
+import com.example.spring.Library.entity.Emprunt;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+
+@Repository
+public interface EmpruntRepository extends JpaRepository<Emprunt, Long> {
+
 }
