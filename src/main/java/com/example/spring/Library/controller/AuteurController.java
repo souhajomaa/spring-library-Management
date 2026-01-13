@@ -1,6 +1,7 @@
 package com.example.spring.Library.controller;
 
 import com.example.spring.Library.entity.Auteur;
+import com.example.spring.Library.entity.Livre;
 import com.example.spring.Library.service.AuteurService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -39,5 +40,10 @@ public class AuteurController {
     public ResponseEntity<Void> deleteAuteur(@PathVariable Long id) {
         auteurService.deleteAuteur(id);
         return ResponseEntity.noContent().build();
+    }
+    @PostMapping("/{auteurId}/livres")
+    public Livre addLivre(@PathVariable Long auteurId, @RequestBody Livre livre) {
+        return auteurService.ajouterLivreAAuteur(auteurId, livre);
+
     }
 }

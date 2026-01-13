@@ -1,13 +1,16 @@
 package com.example.spring.Library.service;
 
 import com.example.spring.Library.entity.Auteur;
+import com.example.spring.Library.entity.Livre;
 import com.example.spring.Library.repository.AuteurRepository;
+import com.example.spring.Library.repository.LivreRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 public class AuteurService implements AuteurSv{
     private AuteurRepository auteurRepository;
-
+   private LivreRepository livreRepository;
     @Override
     public Auteur getAuteurById(Long id) {
         return auteurRepository.findById(id).orElse(null);
@@ -27,5 +30,16 @@ public class AuteurService implements AuteurSv{
     @Override
     public void deleteAuteur(Long id) {
         auteurRepository.deleteById(id);
+    }
+
+    @Transactional
+
+    public Livre ajouterLivreAAuteur(Long id, Livre livre){
+        Auteur auteur=auteurRepository.getAuteurById(id);
+        livre.setAuteur(auteur);
+        Livre livresave=livreRepository.save(livre);
+        auteur.getLivres().add(livresave);
+        auteurRepository.save(auteur);
+        return livresave;
     }
 }

@@ -1,12 +1,14 @@
 package com.example.spring.Library.controller;
 
 import com.example.spring.Library.entity.Livre;
+import com.example.spring.Library.service.AuteurService;
 import com.example.spring.Library.service.LivreService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-
+@Service
 @RestController
 @RequestMapping("/api/livres")
 @RequiredArgsConstructor
@@ -40,4 +42,5 @@ public class LivreController {
         livreService.deleteLivre(id);
         return ResponseEntity.noContent().build();
     }
+
 }
