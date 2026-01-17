@@ -49,4 +49,8 @@ public class EmpruntController {
     ) {
         return empruntService.emprunterLivre(livreId, nom, email);
     }
+    @PutMapping("/retourner/{empruntId}")
+    public Emprunt retournerLivre(@PathVariable Long empruntId) {
+        return empruntService.retournerLivre(empruntId);
+    }
 }

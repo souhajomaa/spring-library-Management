@@ -10,4 +10,5 @@ public interface EmpruntSv {
     Emprunt updateEmprunt(Emprunt emprunt);
     void deleteEmprunt(Long id);
     Emprunt emprunterLivre(Long livreId, String nom, String email);
+    Emprunt retournerLivre(Long empruntId);
 }

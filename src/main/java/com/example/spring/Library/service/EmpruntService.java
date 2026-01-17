@@ -61,5 +61,21 @@ public class EmpruntService implements EmpruntSv {
 
         return empruntRepository.save(emprunt);
     }
+    @Transactional
+    public Emprunt retournerLivre(Long empruntId) {
+        Emprunt emprunt = empruntRepository.findById(empruntId)
+                .orElseThrow(() -> new RuntimeException("Emprunt non trouvé"));
+        if (emprunt.isRetourne()) {
+            throw new RuntimeException("Livre déjà retourné !");
+        }
 
+        emprunt.setRetourne(true);
+        emprunt.setDateRetourEffective(LocalDate.now());
+
+        Livre livre = emprunt.getLivre();
+        livre.setDisponible(true);
+        livreRepository.save(livre);
+
+        return empruntRepository.save(emprunt);
+    }
 }
