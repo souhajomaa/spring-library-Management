@@ -41,4 +41,12 @@ public class EmpruntController {
         empruntService.deleteEmprunt(id);
         return ResponseEntity.noContent().build();
     }
+    @PostMapping("/emprunter")
+    public Emprunt emprunterLivre(
+            @RequestParam Long livreId,
+            @RequestParam String nom,
+            @RequestParam String email
+    ) {
+        return empruntService.emprunterLivre(livreId, nom, email);
+    }
 }

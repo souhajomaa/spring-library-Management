@@ -4,13 +4,17 @@ import com.example.spring.Library.entity.Auteur;
 import com.example.spring.Library.entity.Livre;
 import com.example.spring.Library.repository.AuteurRepository;
 import com.example.spring.Library.repository.LivreRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
+@Service
+@RequiredArgsConstructor
+@Transactional
 public class AuteurService implements AuteurSv{
-    private AuteurRepository auteurRepository;
-   private LivreRepository livreRepository;
+    private final AuteurRepository auteurRepository;
+   private final LivreRepository livreRepository;
     @Override
     public Auteur getAuteurById(Long id) {
         return auteurRepository.findById(id).orElse(null);

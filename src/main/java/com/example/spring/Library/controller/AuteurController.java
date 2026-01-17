@@ -13,7 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AuteurController {
 
-    AuteurService auteurService;
+    private final AuteurService auteurService;
 
     @GetMapping
     public List<Auteur> getAllAuteurs() {
@@ -41,9 +41,10 @@ public class AuteurController {
         auteurService.deleteAuteur(id);
         return ResponseEntity.noContent().build();
     }
+
     @PostMapping("/{auteurId}/livres")
     public Livre addLivre(@PathVariable Long auteurId, @RequestBody Livre livre) {
         return auteurService.ajouterLivreAAuteur(auteurId, livre);
-
     }
+
 }
